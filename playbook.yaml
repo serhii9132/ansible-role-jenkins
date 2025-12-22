@@ -1,0 +1,6 @@
+---
+- name: Setup Jenkons
+  hosts: common-host
+  gather_facts: true
+  roles:
+   - install
