@@ -15,5 +15,5 @@ galaxy_info:
         - jammy
         - noble
   galaxy_tags:
-    - docker
+    - jenkins
 dependencies: []
