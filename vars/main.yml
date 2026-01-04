@@ -3,5 +3,5 @@ gpg_key_url: "{{ base_jenkins_url }}/jenkins.io-2023.key"
 gpg_key_file: /etc/apt/keyrings/jenkins-keyring.asc
 
 jenkins_packages:
-- openjdk-21-jre
-- jenkins
+  - openjdk-21-jre
+  - jenkins

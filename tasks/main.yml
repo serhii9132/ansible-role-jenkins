@@ -21,3 +21,4 @@
   ansible.builtin.apt:
     name: "{{ item }}"
     update_cache: true
+  notify: Start Jenkins service
