@@ -1,5 +1,0 @@
-all:
-  children:
-    common:
-      hosts:
-        common-host:

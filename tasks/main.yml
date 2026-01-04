@@ -1,0 +1,23 @@
+---
+- name: Add the GPG key
+  ansible.builtin.get_url:
+    url: "{{ gpg_key_url }}"
+    dest: "{{ gpg_key_file }}"
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Add the Jenkins repository to APT sources
+  ansible.builtin.deb822_repository:
+    name: jenkins
+    types: ["deb"]
+    uris: "{{ base_jenkins_url }}"
+    components: binary
+    signed_by: "{{ gpg_key_file }}"
+    enabled: true
+
+- name: Install packages
+  loop: "{{ jenkins_packages }}"
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
