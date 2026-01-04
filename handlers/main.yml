@@ -2,5 +2,5 @@
 - name: Start Jenkins service
   ansible.builtin.service:
     name: jenkins
-    boolean: true
+    enabled: true
     state: started

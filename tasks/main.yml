@@ -8,13 +8,10 @@
     mode: '644'
 
 - name: Add the Jenkins repository to APT sources
-  ansible.builtin.deb822_repository:
-    name: jenkins
-    types: ["deb"]
-    uris: "{{ base_jenkins_url }}"
-    components: binary
-    signed_by: "{{ gpg_key_file }}"
-    enabled: true
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ gpg_key_file }}] {{ base_jenkins_url }} binary/"
+    state: present
+    filename: jenkins
 
 - name: Install packages
   loop: "{{ jenkins_packages }}"
