@@ -1,11 +1,14 @@
 ansible-jenkins
 ==============
 
-Ansible role to install a Jenkins server.
+Ansible role to install a Jenkins server.'
+
 Supported platfroms:
+```
 - Debian 13 (Trixie)
 - Ubuntu 22.04 (Jammy Jellyfish)
 - Ubuntu 24.04 (Noble Numbat)
+```
 
 Requirements
 ------------
