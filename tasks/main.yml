@@ -1,6 +1,6 @@
 ---
 - name: Install prerequisite packages
-  loop: "{{ dependencies }}"
+  loop: "{{ __jenkins__dependencies }}"
   ansible.builtin.apt:
     update_cache: true
     name: "{{ item }}"
@@ -9,13 +9,13 @@
   ansible.builtin.deb822_repository:
     name: jenkins
     types: ["deb"]
-    uris: "{{ base_jenkins_url }}"
+    uris: "{{ __jenkins_base_url }}"
     suites: "binary/"
-    signed_by: "{{ gpg_key_url }}"
+    signed_by: "{{ __jenkins_gpg_key_url }}"
     enabled: true
 
 - name: Install packages
-  loop: "{{ jenkins_packages }}"
+  loop: "{{ __jenkins_packages }}"
   ansible.builtin.apt:
     update_cache: true
     name: "{{ item }}"
