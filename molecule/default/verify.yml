@@ -1,0 +1,30 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Get Jenkins version
+      ansible.builtin.command:
+        cmd: jenkins --version
+      register: jenkins_version
+      failed_when: jenkins_version.rc != 0
+      changed_when: false
+
+    - name: Validate version output
+      ansible.builtin.assert:
+        that:
+          - "'2.' in jenkins_version.stdout"
+          - "jenkins_version.stdout_lines | length > 0"
+        fail_msg: "Error"
+
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check if the Jenkins service is running
+      ansible.builtin.assert:
+        that:
+          - "'jenkins.service' in ansible_facts.services"
+          - "ansible_facts.services['jenkins.service'].state == 'running'"
+          - "ansible_facts.services['jenkins.service'].status == 'enabled'"
+        fail_msg: "Service jenkins.service is not running or not enabled"
+        success_msg: "Service jenkins.service is running and enabled properly."
+
