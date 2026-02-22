@@ -1,11 +1,10 @@
 ---
 - name: Install prerequisite packages
-  loop: "{{ __jenkins__dependencies }}"
   ansible.builtin.apt:
     update_cache: true
-    name: "{{ item }}"
+    name: "{{ __jenkins__dependencies }}"
 
-- name: Add the Jenkins repository with embedded key
+- name: Add the Jenkins repository to APT sources
   ansible.builtin.deb822_repository:
     name: jenkins
     types: ["deb"]
@@ -15,8 +14,7 @@
     enabled: true
 
 - name: Install packages
-  loop: "{{ __jenkins_packages }}"
   ansible.builtin.apt:
     update_cache: true
-    name: "{{ item }}"
+    name: "{{ __jenkins_packages }}"
   notify: Start Jenkins service
