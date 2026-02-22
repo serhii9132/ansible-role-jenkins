@@ -27,4 +27,3 @@
           - "ansible_facts.services['jenkins.service'].status == 'enabled'"
         fail_msg: "Service jenkins.service is not running or not enabled"
         success_msg: "Service jenkins.service is running and enabled properly."
-
