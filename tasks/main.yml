@@ -16,5 +16,5 @@
 - name: Install packages
   ansible.builtin.apt:
     update_cache: true
-    name: "{{ __jenkins_packages }}"
+    name: jenkins
   notify: Start Jenkins service
