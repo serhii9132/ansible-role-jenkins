@@ -14,6 +14,4 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_VERBOSITY: 3
-  lint:
-    name: "ansible-lint"
+    ANSIBLE_VERBOSITY: 2
